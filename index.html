@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Просмотр</title>
+  <title>Cloud Form</title>
   <style>
     * {
       box-sizing: border-box;
@@ -56,10 +56,10 @@
   </style>
 </head>
 <body>
-  <!-- Замените screenshot.jpg на путь к вашему скриншоту -->
+  <!-- change screenshot.jpg  -->
   <img id="screenshot" class="media-layer" src="screenshot.png" alt="Скриншот" />
 
-  <!-- Замените video.mp4 на путь к вашему видео -->
+  <!-- change video.mp4 -->
   <video id="video" class="media-layer" src="code.mp4" playsinline controls></video>
 
   <script>
@@ -79,7 +79,7 @@
         video.currentTime = 0;
         await video.play();
       } catch (err) {
-        console.error('Не удалось запустить видео:', err);
+        console.error('Cant play video:', err);
       }
     }
 
