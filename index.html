@@ -3,15 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>code.mp4</title>
+  <title>Просмотр</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      overflow: hidden;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .media-layer {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      transition: opacity 0.25s ease;
+    }
+
+    #screenshot {
+      z-index: 2;
+      opacity: 1;
+    }
+
+    #video {
+      z-index: 1;
+      opacity: 0;
+      pointer-events: none;
+      background-color: #000;
+    }
+
+    body.playing #screenshot {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    body.playing #video {
+      z-index: 3;
+      opacity: 1;
+      pointer-events: auto;
+      cursor: default;
+    }
+  </style>
 </head>
 <body>
-  <video id="player" src="./code.mp4" autoplay controls playsinline></video>
+  <!-- Замените screenshot.jpg на путь к вашему скриншоту -->
+  <img id="screenshot" class="media-layer" src="screenshot.png" alt="Скриншот" />
+
+  <!-- Замените video.mp4 на путь к вашему видео -->
+  <video id="video" class="media-layer" src="code.mp4" playsinline controls></video>
 
   <script>
-    const video = document.getElementById('player');
-    video.muted = false;
-    video.play().catch(() => {});
+    const screenshot = document.getElementById('screenshot');
+    const video = document.getElementById('video');
+    let started = false;
+
+    async function startVideoWithSound() {
+      if (started) return;
+      started = true;
+
+      document.body.classList.add('playing');
+      video.muted = false;
+      video.volume = 1.0;
+
+      try {
+        video.currentTime = 0;
+        await video.play();
+      } catch (err) {
+        console.error('Не удалось запустить видео:', err);
+      }
+    }
+
+    document.addEventListener('click', startVideoWithSound, { once: true });
   </script>
 </body>
 </html>
