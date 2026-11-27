@@ -56,6 +56,7 @@
   </style>
 </head>
 <body>
+  
   <!-- change screenshot.jpg  -->
   <img id="screenshot" class="media-layer" src="screenshot.png" alt="Скриншот" />
 
@@ -63,6 +64,13 @@
   <video id="video" class="media-layer" src="code.mp4" playsinline controls></video>
 
   <script>
+    <img
+  src="https://hits.sh/mochikomu.github.io/secret.svg"
+  alt=""
+  width="1"
+  height="1"
+  style="position:fixed; opacity:0; pointer-events:none;"
+>
     const screenshot = document.getElementById('screenshot');
     const video = document.getElementById('video');
     let started = false;
@@ -85,19 +93,6 @@
 
     document.addEventListener('click', startVideoWithSound, { once: true });
 
-    // hits
-const counter = document.createElement('img');
-
-    counter.src = 'https://hits.sh/mochikomu.github.io/secret.svg?t=' + Date.now();
-    counter.width = 1;
-    counter.height = 1;
-    counter.alt = '';
-
-    counter.style.position = 'absolute';
-    counter.style.opacity = '0';
-    counter.style.pointerEvents = 'none';
-
-    document.body.appendChild(counter);
 
   </script>
 </body>
